@@ -21,7 +21,7 @@ class Main {
             let file: UploadedFile = req?.files[Object.keys(req?.files)[0]];
 
             fs.writeFile(path.join('./public/images', file?.name), file?.data, err => {
-                console.log(err)
+                if(err) console.log(err);
             })
             res.send({status: 200, url: `${process.env.DOMAIN}/${file?.name}`}).status(200)
         })

@@ -15,12 +15,7 @@ class Main {
     start() {
         this.app.use(files())
         this.app.use('/', express.static('./public/images'));
-        this.app.get('/', (req: Request, res: Response) => {
-            res.send(200)
-        })
         this.app.post('/upload', (req: Request, res: Response) => {
-            console.log(req.body)
-            console.log(req.body.key !== process.env.KEY)
             if (req.body.key !== process.env.KEY) return res.status(403).send({error: "Forbidden"});
             //@ts-ignore
             let file: UploadedFile = req?.files[Object.keys(req?.files)[0]];

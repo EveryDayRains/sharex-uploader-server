@@ -5,7 +5,7 @@
  
 - Склонируйте репозиторий и установите зависимости
 ```
-git clone https://github.com/
+git clone https://github.com/MrLivixx/sharex-uploader-server.git
 npm i
 ```
 - Смените название файла .env.example на .env и подставьте свои значения

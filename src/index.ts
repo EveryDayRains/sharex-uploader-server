@@ -26,10 +26,10 @@ class Main {
             res.send({ status: 200, url: `${process.env.DOMAIN}/${file?.name}` }).status(200);
         })
         this.app.use((req: Request, res: Response, next: NextFunction) =>
-            res.status(404).send(fs.readFileSync(path.join('./public/pages/404.html')).toString());
+            res.status(404).send(fs.readFileSync(path.join('./public/pages/404.html')).toString())
         );
         this.app.use((err: Error, req: Request, res: Response, next: NextFunction) =>
-            res.status(500).send(fs.readFileSync(path.join('./public/pages/500.html')).toString());
+            res.status(500).send(fs.readFileSync(path.join('./public/pages/500.html')).toString())
         );
 
         this.app.listen(process.env.PORT, () => console.log(`Api started on ${process.env.PORT} port....`));

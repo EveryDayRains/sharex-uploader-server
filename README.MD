@@ -30,18 +30,19 @@ npm start
 2. Нажмите на Импорт и "Из буфера" и вставьте данный код:
 ```json
 {
-  "Version": "13.4.0",
-  "Name": "test",
-  "DestinationType": "ImageUploader",
-  "RequestMethod": "POST",
-  "RequestURL": "http://localhost:1000/upload",
-  "Body": "MultipartFormData",
-  "Arguments": {
-    "key": "KEY"
-  },
-  "FileFormName": "file",
-  "URL": "$json:url$",
-  "ErrorMessage": "$json:error$"
+   "Version": "14.1.0",
+   "Name": "test",
+   "DestinationType": "ImageUploader",
+   "RequestMethod": "POST",
+   "RequestURL": "http://localhost:1000/upload",
+   "Body": "MultipartFormData",
+   "Arguments": {
+      "key": "KEY"
+   },
+   "FileFormName": "file",
+   "URL": "{json:url}",
+   "DeletionURL": "{json:delete}",
+   "ErrorMessage": "{json:error}"
 }
 ```
 После этого смените домен на свой в поле URL и установите свой ключ в разделе "Тело" и в графе "Key"

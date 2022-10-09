@@ -23,7 +23,16 @@ class Main {
             fs.writeFile(path.join('./public/images', file?.name), file?.data, err => {
                 if(err) console.log(err);
             })
-            res.send({status: 200, url: `${process.env.DOMAIN}/${file?.name}`}).status(200)
+            res.send({status: 200, url: `${process.env.DOMAIN}/${file?.name}`, delete: `${process.env.DOMAIN}/delete/${file.name}/?key=${process.env.KEY}`}).status(200)
+        })
+        this.app.get('/delete/:name', (req: Request, res: Response) => {
+            if (!fs.existsSync(path.join('./public/images', req.params.name))) return res.status(404).send(fs.readFileSync(path.join('./public/pages/404.html')).toString());
+            if (req.query.key !== process.env.KEY) return res.status(403).send({error: "Forbidden"});
+            fs.unlink(path.join('./public/images', req.params.name), err => {
+                if(err) console.log(err);
+            })
+            // HTML страница о том, что файл удален
+            res.send(fs.readFileSync(path.join('./public/pages/deleted.html')).toString()).status(200)
         })
         this.app.use((req: Request, res: Response, next: NextFunction) =>
             res.status(404).send(fs.readFileSync(path.join('./public/pages/404.html')).toString())
